@@ -1,0 +1,13 @@
+.container {
+    border: solid;
+    border-color: blue;
+}
+
+#bottom {
+    display: flex;
+}
+
+#bottom-left, #bottom-right {
+    display: flex;
+    flex-direction: column;
+}
