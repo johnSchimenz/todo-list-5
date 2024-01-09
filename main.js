@@ -3,23 +3,35 @@ const currentProject = "";
 const projectsStorageArray = [];
 
 // Project factory
-const ProjectFactory = (title) => {
+const ProjectFactory = (projectTitle) => {
     return {
-        title,
+        title: projectTitle,
         toDos: [],
     };
 }
 
 // Function that adds a project to the projectsStorageArray and updates projectsStorageArray
-const addProjectToProjectsStorageArray = (project) => {
+const addProjectToProjectsStorageArray = (projectTitle) => {
 
-    // Create project using ProjectFactory
-    const newestProject = ProjectFactory(project);
+    // Create project
+    const newestProject = ProjectFactory(projectTitle);
 
     // Push project to storage array
     projectsStorageArray.push(newestProject);
 
     // Return updated projectsStorageArray
+    return projectsStorageArray;
+}
+
+const removeProjectFromProjectsArray = (projectTitle) => {
+
+    // Search for project title, and if it is matched, removed that project from projectsStorageArray
+    for (let i = 0; i < projectsStorageArray.length; i++) {
+        if (projectsStorageArray[i].title === projectTitle.title) {
+            const indexToRemove = projectsStorageArray.indexOf(projectsStorageArray[i]);
+            projectsStorageArray.splice(indexToRemove, 1);
+        }
+    }
     return projectsStorageArray;
 }
 
@@ -33,9 +45,11 @@ const ToDoFactory = (title, dueDate, details) => {
 }
 
 // Trial stuff to make sure Javascript functionality works
-addProjectToProjectsStorageArray('AAAA');
-addProjectToProjectsStorageArray('BBB');
-addProjectToProjectsStorageArray('CC');
+const a = addProjectToProjectsStorageArray('AAAA');
+const b = addProjectToProjectsStorageArray('BBB');
+const c = addProjectToProjectsStorageArray('CC');
+console.log(projectsStorageArray);
+removeProjectFromProjectsArray({title: 'AAAA'});
 console.log(projectsStorageArray);
 
 
