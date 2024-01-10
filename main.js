@@ -1,5 +1,5 @@
 // Initialize variables
-const currentProject = "";
+let currentProject = "";
 const projectsStorageArray = [];
 
 // Project factory
@@ -23,7 +23,27 @@ const addProjectToProjectsStorageArray = (projectTitle) => {
     return projectsStorageArray;
 }
 
-const removeProjectFromProjectsArray = (projectTitle) => {
+// Function that adds a todo to the toDos array of a particular project
+const addToDoToProject = (titleToDo, dueDateToDo, detailsToDo, currentProject) => {
+
+    // Create todo
+    const newestToDo = ToDoFactory(titleToDo, dueDateToDo, detailsToDo);
+
+    // Push project to current project's toDos
+    let currentProject = currentProject.toDos.push(newestToDo);
+
+    // Update projectsStorageAray with currentProject
+    for (let i = 0; i < projectsStorageArray.length; i++) {
+        if (currentProject.title === projectsStorageArray[i].title) {
+            projectsStorageArray[i] = currentProject;
+        }
+    }
+
+    // Return updated projectsStorageArray
+    return projectsStorageArray
+}
+
+const removeProjectFromProjectsStorageArray = (projectTitle) => {
 
     // Search for project title, and if it is matched, removed that project from projectsStorageArray
     for (let i = 0; i < projectsStorageArray.length; i++) {
@@ -48,10 +68,7 @@ const ToDoFactory = (title, dueDate, details) => {
 const a = addProjectToProjectsStorageArray('AAAA');
 const b = addProjectToProjectsStorageArray('BBB');
 const c = addProjectToProjectsStorageArray('CC');
-console.log(projectsStorageArray);
-removeProjectFromProjectsArray({title: 'AAAA'});
-console.log(projectsStorageArray);
-
+removeProjectFromProjectsStorageArray({title: 'AAAA'});
 
 // DOM - list of all initial document.querySelectors
 const selectTopContainer = document.querySelector('#top');
