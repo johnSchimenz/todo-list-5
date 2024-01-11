@@ -26,7 +26,7 @@ const addProjectToProjectsStorageArray = (projectTitle) => {
     return projectsStorageArray;
 }
 
-// Function that adds a todo to the toDos array of a particular project
+// Function that adds a todo to the toDos array of a particular project and updates projectsStorageArray
 const addToDoToProject = (titleToDo, dueDateToDo, detailsToDo) => {
 
     // Create todo
@@ -46,7 +46,7 @@ const addToDoToProject = (titleToDo, dueDateToDo, detailsToDo) => {
     return projectsStorageArray
 }
 
-// Function that removes a todo
+// Function that removes a todo and updates projectsStorageArray
 const removeToDoFromProject = (titleToDo) => {
     
     // From currentProject, search for todo title, and if it is matched, removed that todo from the todo array
@@ -106,3 +106,21 @@ const selectToDosContainer = document.querySelector('#todos');
 const selectProjectsContainer = document.querySelector('#projects');
 const clickNewProjectButton = document.querySelector('#new-project');
 const clickNewToDoButton = document.querySelector('#new-todo');
+
+// DOM - create form for new project
+clickNewProjectButton.addEventListener('click', () => {
+
+    // DOM - temporarily make New Project and New To Do buttons unclickable
+    clickNewProjectButton.setAttribute('disabled', 'disabled');
+    clickNewToDoButton.setAttribute('disabled', 'disabled');
+
+    // DOM - create input box and submit button
+    const inputBox = document.createElement('input');
+    inputBox.setAttribute('id', 'title');
+    selectProjectsContainer.appendChild(inputBox);
+    
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    submitButton.setAttribute('id', 'submit');
+    selectProjectsContainer.appendChild(submitButton);
+})
