@@ -48,13 +48,23 @@ const addToDoToProject = (titleToDo, dueDateToDo, detailsToDo) => {
 
 // Function that removes a todo
 const removeToDoFromProject = (titleToDo) => {
-
-    // From currentProject, search for todo title, and if it is matched, removed that toDo from the todo array
-    for (let i = 0; i < currentProject['toDos'].length; i++) {
-        if (currentProject['toDos'][i] === titleToDo) {
-            projectsStorageArray.splice(i, 1);
+    
+    // From currentProject, search for todo title, and if it is matched, removed that todo from the todo array
+    for (let i = 0; i < currentProject['toDos'].length; i++) { 
+        if (currentProject['toDos'][i].title === titleToDo) {
+            currentProject['toDos'].splice(i, 1);
         }
     }
+    console.log(currentProject);
+
+    // Update projectsStorageArray
+    for (let i = 0; i < projectsStorageArray.length; i++) {
+        if (projectsStorageArray[i].title === currentProject.title) {
+            projectsStorageArray[i] = currentProject;
+        }
+    console.log(projectsStorageArray);
+    }
+
     return projectsStorageArray;
 }
 
@@ -78,17 +88,14 @@ const ToDoFactory = (title, dueDate, details) => {
 }
 
 // Trial stuff to make sure Javascript functionality works
-const a = addProjectToProjectsStorageArray('AAAA');
-const b = addProjectToProjectsStorageArray('BBB');
-const c = addProjectToProjectsStorageArray('CC');
-console.log(projectsStorageArray);
-removeProjectFromProjectsStorageArray('AAAA');
-console.log(projectsStorageArray);
+const a = addProjectToProjectsStorageArray('Project1');
+const b = addProjectToProjectsStorageArray('Project2');
+const c = addProjectToProjectsStorageArray('Project3');
+removeProjectFromProjectsStorageArray('Project1');
 addToDoToProject('Fire', 'b', 'c');
 addToDoToProject('Water', 'x', 'y');
-console.log(projectsStorageArray);
+addToDoToProject('Air', 'm', 'n');
 removeToDoFromProject('Fire');
-console.log(projectsStorageArray);
 
 // DOM - list of all initial document.querySelectors
 const selectTopContainer = document.querySelector('#top');
