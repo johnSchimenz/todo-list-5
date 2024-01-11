@@ -16,7 +16,10 @@ const addProjectToProjectsStorageArray = (projectTitle) => {
     // Create project
     const newestProject = ProjectFactory(projectTitle);
 
-    // Push project to storage array
+    // currentProject becomes the newestProject
+    currentProject = newestProject
+
+    // Push newestProject to storage array
     projectsStorageArray.push(newestProject);
 
     // Return updated projectsStorageArray
@@ -24,7 +27,7 @@ const addProjectToProjectsStorageArray = (projectTitle) => {
 }
 
 // Function that adds a todo to the toDos array of a particular project
-const addToDoToProject = (titleToDo, dueDateToDo, detailsToDo, currentProject) => {
+const addToDoToProject = (titleToDo, dueDateToDo, detailsToDo) => {
 
     // Create todo
     const newestToDo = ToDoFactory(titleToDo, dueDateToDo, detailsToDo);
@@ -70,7 +73,9 @@ const c = addProjectToProjectsStorageArray('CC');
 console.log(projectsStorageArray);
 removeProjectFromProjectsStorageArray('AAAA');
 console.log(projectsStorageArray);
-addToDoToProject('Fire', 'b', 'c', a);
+addToDoToProject('Fire', 'b', 'c');
+addToDoToProject('Water', 'x', 'y');
+console.log(projectsStorageArray);
 
 // DOM - list of all initial document.querySelectors
 const selectTopContainer = document.querySelector('#top');
