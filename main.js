@@ -46,12 +46,23 @@ const addToDoToProject = (titleToDo, dueDateToDo, detailsToDo) => {
     return projectsStorageArray
 }
 
+// Function that removes a todo
+const removeToDoFromProject = (titleToDo) => {
+
+    // From currentProject, search for todo title, and if it is matched, removed that toDo from the todo array
+    for (let i = 0; i < currentProject['toDos'].length; i++) {
+        if (currentProject['toDos'][i] === titleToDo) {
+            projectsStorageArray.splice(i, 1);
+        }
+    }
+    return projectsStorageArray;
+}
+
 // Search for project title, and if it is matched, removed that project from projectsStorageArray
 const removeProjectFromProjectsStorageArray = (projectTitle) => {
     for (let i = 0; i < projectsStorageArray.length; i++) {
         if (projectsStorageArray[i].title === projectTitle) {
-            const indexToRemove = projectsStorageArray.indexOf(projectsStorageArray[i]);
-            projectsStorageArray.splice(indexToRemove, 1);
+            projectsStorageArray.splice(i, 1);
         }
     }
     return projectsStorageArray;
@@ -75,6 +86,8 @@ removeProjectFromProjectsStorageArray('AAAA');
 console.log(projectsStorageArray);
 addToDoToProject('Fire', 'b', 'c');
 addToDoToProject('Water', 'x', 'y');
+console.log(projectsStorageArray);
+removeToDoFromProject('Fire');
 console.log(projectsStorageArray);
 
 // DOM - list of all initial document.querySelectors
