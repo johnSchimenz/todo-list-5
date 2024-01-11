@@ -114,13 +114,41 @@ clickNewProjectButton.addEventListener('click', () => {
     clickNewProjectButton.setAttribute('disabled', 'disabled');
     clickNewToDoButton.setAttribute('disabled', 'disabled');
 
-    // DOM - create input box and submit button
+    // DOM - create fieldset, input box, Submit button, and Cancel button
+    const fieldset = document.createElement('fieldset');
+    fieldset.setAttribute('id', 'fieldset');
+    selectProjectsContainer.appendChild(fieldset);
+    const selectFieldsetContainer = document.querySelector('#fieldset');
+
     const inputBox = document.createElement('input');
     inputBox.setAttribute('id', 'title');
-    selectProjectsContainer.appendChild(inputBox);
+    selectFieldsetContainer.appendChild(inputBox);
     
     const submitButton = document.createElement('button');
     submitButton.textContent = 'Submit';
     submitButton.setAttribute('id', 'submit');
-    selectProjectsContainer.appendChild(submitButton);
+    selectFieldsetContainer.appendChild(submitButton);
+    const clickSubmitButton = document.querySelector('#submit');
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'Cancel';
+    cancelButton.setAttribute('id', 'cancel');
+    selectFieldsetContainer.appendChild(cancelButton);
+    const clickCancelButton = document.querySelector('#cancel');
+
+    // DOM - functionality of Cancel button
+    clickCancelButton.addEventListener('click', () => {
+        
+        // DOM - removes fieldset
+        selectProjectsContainer.removeChild(selectFieldsetContainer);
+
+        // DOM - makes New Project and New To Do buttons clickable again
+        clickNewProjectButton.removeAttribute('disabled');
+        clickNewToDoButton.removeAttribute('disabled');
+    })
+
+    // Functionality of Submit button
+    clickSubmitButton.addEventListener('click', () => {
+        console.log('also works');
+    })
 })
