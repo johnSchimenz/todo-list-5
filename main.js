@@ -19,6 +19,9 @@ const addProjectToProjectsStorageArray = (projectTitle) => {
     // Push project to storage array
     projectsStorageArray.push(newestProject);
 
+    // Make newestProject the currentProject
+    currentProject = newestProject;
+
     // Return updated projectsStorageArray
     return projectsStorageArray;
 }
@@ -30,7 +33,7 @@ const addToDoToProject = (titleToDo, dueDateToDo, detailsToDo, currentProject) =
     const newestToDo = ToDoFactory(titleToDo, dueDateToDo, detailsToDo);
 
     // Push project to current project's toDos
-    let currentProject = currentProject.toDos.push(newestToDo);
+    currentProject = currentProject.toDos.push(newestToDo);
 
     // Update projectsStorageAray with currentProject
     for (let i = 0; i < projectsStorageArray.length; i++) {
@@ -69,6 +72,7 @@ const a = addProjectToProjectsStorageArray('AAAA');
 const b = addProjectToProjectsStorageArray('BBB');
 const c = addProjectToProjectsStorageArray('CC');
 removeProjectFromProjectsStorageArray({title: 'AAAA'});
+addToDoToProject('Fire', 'b', 'c', a);
 
 // DOM - list of all initial document.querySelectors
 const selectTopContainer = document.querySelector('#top');
