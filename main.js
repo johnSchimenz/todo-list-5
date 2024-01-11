@@ -149,6 +149,22 @@ clickNewProjectButton.addEventListener('click', () => {
 
     // Functionality of Submit button
     clickSubmitButton.addEventListener('click', () => {
-        console.log('also works');
+
+        // Create a new project
+        addProjectToProjectsStorageArray(inputBox.value);
+
+        // DOM - display title of new project on page
+        const displayProject = document.createElement('div');
+        displayProject.textContent = inputBox.value;
+        displayProject.setAttribute('class', 'project');
+        selectProjectsContainer.appendChild(displayProject);
+
+        // DOM - remove fieldset
+        selectProjectsContainer.removeChild(selectFieldsetContainer);
+
+        // DOM - makes New Project and New To Do buttons clickable again
+        clickNewProjectButton.removeAttribute('disabled');
+        clickNewToDoButton.removeAttribute('disabled');       
+        
     })
 })
