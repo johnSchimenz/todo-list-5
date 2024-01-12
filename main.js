@@ -1,5 +1,5 @@
 // Initialize variables
-let currentProject = "";
+let currentProject = {};
 const projectsStorageArray = [];
 const toDoParameters = ['title', 'dueDate', 'details'];
 
@@ -240,30 +240,27 @@ clickNewToDoButton.addEventListener('click', () => {
         
         // Create and add newest todo to current project (I DON'T like how this is hard-coded, but sticking with it for now)
         addToDoToProject(argumentsNewestToDo[0], argumentsNewestToDo[1], argumentsNewestToDo[2]);
-        console.log(currentProject);
+
+        // DOM - remove fieldset
+        selectToDosContainer.removeChild(selectFieldsetContainer);
+        
+        // DOM - remove currently displayed todo items
+        const selectDisplayedToDos = document.querySelectorAll('.displayed-todo');
+        selectDisplayedToDos.forEach((displayedToDo) => {
+            selectToDosContainer.removeChild(displayedToDo);
+        })
+
         // DOM - display all todo items from current project on page
         for (let i = 0; i < currentProject['toDos'].length; i++) {
             const toDoContainer = document.createElement('div');
+            toDoContainer.setAttribute('class', 'displayed-todo');
             const toDo = currentProject['toDos'][i];
             toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
             selectToDosContainer.appendChild(toDoContainer);
         }
 
-        /*
-        // DOM - display title of new project on page
-        const displayToDo = document.createElement('div');
-        displayProject.textContent = inputBox.value;
-        displayProject.setAttribute('class', 'project');
-        selectProjectsContainer.appendChild(displayProject);
-        */
-
-        // DOM - remove fieldset
-        selectToDosContainer.removeChild(selectFieldsetContainer);
-
         // DOM - makes New Project and New To Do buttons clickable again
         clickNewProjectButton.removeAttribute('disabled');
         clickNewToDoButton.removeAttribute('disabled');       
-    
     })
-    
 })
