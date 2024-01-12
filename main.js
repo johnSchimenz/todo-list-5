@@ -112,6 +112,11 @@ const addToDosToDomFunction = (parentContainer) => {
         const toDo = currentProject['toDos'][i];
         toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
         parentContainer.appendChild(toDoContainer);
+
+        // DOM - add Delete button to remove specific todo
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        toDoContainer.appendChild(deleteButton);
     }
 }
 
