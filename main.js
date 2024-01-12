@@ -241,10 +241,9 @@ clickNewToDoButton.addEventListener('click', () => {
             console.log(argumentsNewestToDo);
         }
         
-        // Create and add newest todo to current project
+        // Create and add newest todo to current project (I DON'T like how this is hard-coded, but sticking with it for now)
         addToDoToProject(argumentsNewestToDo[0], argumentsNewestToDo[1], argumentsNewestToDo[2]);
 
-        /*
         // DOM - display title of new project on page
         const displayProject = document.createElement('div');
         displayProject.textContent = inputBox.value;
@@ -252,12 +251,12 @@ clickNewToDoButton.addEventListener('click', () => {
         selectProjectsContainer.appendChild(displayProject);
 
         // DOM - remove fieldset
-        selectProjectsContainer.removeChild(selectFieldsetContainer);
+        selectToDosContainer.removeChild(selectFieldsetContainer);
 
         // DOM - makes New Project and New To Do buttons clickable again
         clickNewProjectButton.removeAttribute('disabled');
         clickNewToDoButton.removeAttribute('disabled');       
-        */
+    
     })
     
 })
