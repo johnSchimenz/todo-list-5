@@ -108,6 +108,26 @@ const selectProjectsContainer = document.querySelector('#projects');
 const clickNewProjectButton = document.querySelector('#new-project');
 const clickNewToDoButton = document.querySelector('#new-todo');
 
+// DOM - function that remove all children from a parent container
+const removeChildrenFromDomFunction = (parentContainer, childClassString) => {
+    const selectChildren = document.querySelectorAll('.' + childClassString);
+    selectChildren.forEach((child) => {
+        parentContainer.removeChild(child);
+    })
+}
+
+// DOM - function that adds todo tiems from current project on page
+const addToDosToDomFunction = (parentContainer) => {
+    for (let i = 0; i < currentProject['toDos'].length; i++) {
+        const toDoContainer = document.createElement('div');
+        toDoContainer.setAttribute('class', 'displayed-todo');
+        const toDo = currentProject['toDos'][i];
+        toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
+        parentContainer.appendChild(toDoContainer);
+    }
+}
+
+
 // DOM - create fieldset to input new project
 clickNewProjectButton.addEventListener('click', () => {
 
@@ -168,19 +188,10 @@ clickNewProjectButton.addEventListener('click', () => {
         clickNewToDoButton.removeAttribute('disabled');
         
         // DOM - remove currently displayed todo items
-        const selectDisplayedToDos = document.querySelectorAll('.displayed-todo');
-        selectDisplayedToDos.forEach((displayedToDo) => {
-            selectToDosContainer.removeChild(displayedToDo);
-        })
+        removeChildrenFromDomFunction(selectToDosContainer, 'displayed-todo');
 
         // DOM - display all todo items from current project on page
-        for (let i = 0; i < currentProject['toDos'].length; i++) {
-            const toDoContainer = document.createElement('div');
-            toDoContainer.setAttribute('class', 'displayed-todo');
-            const toDo = currentProject['toDos'][i];
-            toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
-            selectToDosContainer.appendChild(toDoContainer);
-        }
+        addToDosToDomFunction(selectToDosContainer);
     })
 })
 
@@ -261,19 +272,10 @@ clickNewToDoButton.addEventListener('click', () => {
         selectToDosContainer.removeChild(selectFieldsetContainer);
         
         // DOM - remove currently displayed todo items
-        const selectDisplayedToDos = document.querySelectorAll('.displayed-todo');
-        selectDisplayedToDos.forEach((displayedToDo) => {
-            selectToDosContainer.removeChild(displayedToDo);
-        })
+        removeChildrenFromDomFunction(selectToDosContainer, 'displayed-todo');
 
         // DOM - display all todo items from current project on page
-        for (let i = 0; i < currentProject['toDos'].length; i++) {
-            const toDoContainer = document.createElement('div');
-            toDoContainer.setAttribute('class', 'displayed-todo');
-            const toDo = currentProject['toDos'][i];
-            toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
-            selectToDosContainer.appendChild(toDoContainer);
-        }
+        addToDosToDomFunction(selectToDosContainer);
 
         // DOM - makes New Project and New To Do buttons clickable again
         clickNewProjectButton.removeAttribute('disabled');
