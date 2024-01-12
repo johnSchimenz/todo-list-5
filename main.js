@@ -199,6 +199,7 @@ clickNewToDoButton.addEventListener('click', () => {
         inputBox.setAttribute('type', 'text');
         inputBox.setAttribute('id', toDoParameters[i]);
         inputBox.setAttribute('name', toDoParameters[i]);
+        inputBox.setAttribute('class', 'input');
         inputContainer.appendChild(inputBox);
     }
 
@@ -226,13 +227,24 @@ clickNewToDoButton.addEventListener('click', () => {
         clickNewProjectButton.removeAttribute('disabled');
         clickNewToDoButton.removeAttribute('disabled');
     })
-    /*
+    
     // Functionality of Submit button
     clickSubmitButton.addEventListener('click', () => {
 
-        // Create a new project
-        addProjectToProjectsStorageArray(inputBox.value);
+        // Initialize empty array for fieldset arguments
+        const argumentsNewestToDo = [];
 
+        // Get values from all inputBox's and push to argumentsNewestToDo array
+        for (let i = 0; i < toDoParameters.length; i++) {
+            const selectInputBox = document.querySelector('#' + toDoParameters[i]);
+            argumentsNewestToDo.push(selectInputBox.value);
+            console.log(argumentsNewestToDo);
+        }
+        
+        // Create and add newest todo to current project
+        addToDoToProject(argumentsNewestToDo[0], argumentsNewestToDo[1], argumentsNewestToDo[2]);
+
+        /*
         // DOM - display title of new project on page
         const displayProject = document.createElement('div');
         displayProject.textContent = inputBox.value;
@@ -245,7 +257,7 @@ clickNewToDoButton.addEventListener('click', () => {
         // DOM - makes New Project and New To Do buttons clickable again
         clickNewProjectButton.removeAttribute('disabled');
         clickNewToDoButton.removeAttribute('disabled');       
-        
+        */
     })
-    */
+    
 })
