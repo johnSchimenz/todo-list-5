@@ -127,18 +127,12 @@ const addToDosToDomFunction = (parentContainer) => {
         clickDeleteButton.addEventListener('click', () => {
 
             // Delete todo item and update projectsStorageArray
-            console.log(projectsStorageArray);
-            console.log(currentProject);
-            console.log(currentProject.toDos[0]['title']);
-            removeToDoFromProject(currentProject.toDos[0]['title']);
+            removeToDoFromProject(toDo.title);
             console.log(projectsStorageArray);
 
             // DOM - removes the todo
-            parentContainer.removeChild(selectSpecificToDoContainer); 
-                   
+            parentContainer.removeChild(selectSpecificToDoContainer);     
         })
-
-
     }
 }
 
@@ -242,8 +236,6 @@ clickNewProjectButton.addEventListener('click', () => {
         // DOM - clicking any project name will make it the currentProject and display the currentProject todos
         clickProject();
     })
-
-
 })
 
 // DOM - create fieldset to input new todo item
