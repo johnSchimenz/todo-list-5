@@ -106,7 +106,7 @@ const selectProjectsContainer = document.querySelector('#projects');
 const clickNewProjectButton = document.querySelector('#new-project');
 const clickNewToDoButton = document.querySelector('#new-todo');
 
-// DOM - create fieldset for new project
+// DOM - create fieldset to input new project
 clickNewProjectButton.addEventListener('click', () => {
 
     // DOM - temporarily make New Project and New To Do buttons unclickable
@@ -163,12 +163,27 @@ clickNewProjectButton.addEventListener('click', () => {
 
         // DOM - makes New Project and New To Do buttons clickable again
         clickNewProjectButton.removeAttribute('disabled');
-        clickNewToDoButton.removeAttribute('disabled');       
+        clickNewToDoButton.removeAttribute('disabled');
+        
+        // DOM - remove currently displayed todo items
+        const selectDisplayedToDos = document.querySelectorAll('.displayed-todo');
+        selectDisplayedToDos.forEach((displayedToDo) => {
+            selectToDosContainer.removeChild(displayedToDo);
+        })
+
+        // DOM - display all todo items from current project on page
+        for (let i = 0; i < currentProject['toDos'].length; i++) {
+            const toDoContainer = document.createElement('div');
+            toDoContainer.setAttribute('class', 'displayed-todo');
+            const toDo = currentProject['toDos'][i];
+            toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
+            selectToDosContainer.appendChild(toDoContainer);
+        }
         
     })
 })
 
-// DOM - create fieldset for new todo item
+// DOM - create fieldset to input new todo item
 clickNewToDoButton.addEventListener('click', () => {
 
     // DOM - temporarily make New Project and New To Do buttons unclickable
