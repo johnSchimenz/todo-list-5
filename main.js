@@ -86,18 +86,6 @@ const ToDoFactory = (title, dueDate, details) => {
     };
 }
 
-/*
-// Trial stuff to make sure Javascript functionality works
-const a = addProjectToProjectsStorageArray('Project1');
-const b = addProjectToProjectsStorageArray('Project2');
-const c = addProjectToProjectsStorageArray('Project3');
-removeProjectFromProjectsStorageArray('Project1');
-addToDoToProject('Fire', 'b', 'c');
-addToDoToProject('Water', 'x', 'y');
-addToDoToProject('Air', 'm', 'n');
-removeToDoFromProject('Fire');
-*/
-
 // DOM - list of all initial document.querySelectors
 const selectTopContainer = document.querySelector('#top');
 const selectBottomContainer = document.querySelector('#bottom');
@@ -108,7 +96,7 @@ const selectProjectsContainer = document.querySelector('#projects');
 const clickNewProjectButton = document.querySelector('#new-project');
 const clickNewToDoButton = document.querySelector('#new-todo');
 
-// DOM - function that remove all children from a parent container
+// DOM - function that removes all children from a parent container
 const removeChildrenFromDomFunction = (parentContainer, childClassString) => {
     const selectChildren = document.querySelectorAll('.' + childClassString);
     selectChildren.forEach((child) => {
@@ -116,7 +104,7 @@ const removeChildrenFromDomFunction = (parentContainer, childClassString) => {
     })
 }
 
-// DOM - function that adds todo tiems from current project on page
+// DOM - function that adds todo items from current project on page
 const addToDosToDomFunction = (parentContainer) => {
     for (let i = 0; i < currentProject['toDos'].length; i++) {
         const toDoContainer = document.createElement('div');
@@ -126,7 +114,6 @@ const addToDosToDomFunction = (parentContainer) => {
         parentContainer.appendChild(toDoContainer);
     }
 }
-
 
 // DOM - create fieldset to input new project
 clickNewProjectButton.addEventListener('click', () => {
