@@ -56,14 +56,12 @@ const removeToDoFromProject = (titleToDo) => {
             currentProject['toDos'].splice(i, 1);
         }
     }
-    console.log(currentProject);
 
     // Update projectsStorageArray
     for (let i = 0; i < projectsStorageArray.length; i++) {
         if (projectsStorageArray[i].title === currentProject.title) {
             projectsStorageArray[i] = currentProject;
         }
-    console.log(projectsStorageArray);
     }
 
     return projectsStorageArray;
@@ -238,17 +236,26 @@ clickNewToDoButton.addEventListener('click', () => {
         for (let i = 0; i < toDoParameters.length; i++) {
             const selectInputBox = document.querySelector('#' + toDoParameters[i]);
             argumentsNewestToDo.push(selectInputBox.value);
-            console.log(argumentsNewestToDo);
         }
         
         // Create and add newest todo to current project (I DON'T like how this is hard-coded, but sticking with it for now)
         addToDoToProject(argumentsNewestToDo[0], argumentsNewestToDo[1], argumentsNewestToDo[2]);
+        console.log(currentProject);
+        // DOM - display all todo items from current project on page
+        for (let i = 0; i < currentProject['toDos'].length; i++) {
+            const toDoContainer = document.createElement('div');
+            const toDo = currentProject['toDos'][i];
+            toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
+            selectToDosContainer.appendChild(toDoContainer);
+        }
 
+        /*
         // DOM - display title of new project on page
-        const displayProject = document.createElement('div');
+        const displayToDo = document.createElement('div');
         displayProject.textContent = inputBox.value;
         displayProject.setAttribute('class', 'project');
         selectProjectsContainer.appendChild(displayProject);
+        */
 
         // DOM - remove fieldset
         selectToDosContainer.removeChild(selectFieldsetContainer);
