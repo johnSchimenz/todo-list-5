@@ -115,14 +115,36 @@ const addToDosToDomFunction = (parentContainer) => {
     }
 }
 
-// DOM - what happens when a Project title is clicked
+// DOM - when a Project is clicked, removes and then adds the event listeners
 const clickProject = () => {
     const allProjects = document.querySelectorAll('.project');
+    
+    // Remove existing event listeners
     allProjects.forEach((project) => {
-        project.addEventListener('click', () => {
-            console.log('works');
-        })
-    })
+        project.removeEventListener('click', handleProjectClick);
+    });
+
+    // Add new event listeners
+    allProjects.forEach((project) => {
+        project.addEventListener('click', handleProjectClick);
+    });
+}
+
+// DOM - when a Project is clicked, displays correct todos
+const handleProjectClick = (event) => {
+    for (let i = 0; i < projectsStorageArray.length; i++) {
+        if (event.target.textContent === projectsStorageArray[i]['title']) {
+            
+            // DOM - Make currentProject the clicked project
+            currentProject = projectsStorageArray[i];
+
+            // DOM - Remove displayed todos
+            removeChildrenFromDomFunction(selectToDosContainer, 'displayed-todo');
+
+            // DOM - Add the currentProject's todos
+            addToDosToDomFunction(selectToDosContainer);
+        }
+    }
 }
 
 // DOM - create fieldset to input new project
@@ -190,7 +212,7 @@ clickNewProjectButton.addEventListener('click', () => {
         // DOM - display all todo items from current project on page
         addToDosToDomFunction(selectToDosContainer);
 
-        // DOM - clicking any project name 
+        // DOM - clicking any project name will make it the currentProject and display the currentProject todos
         clickProject();
     })
 
