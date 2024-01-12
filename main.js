@@ -168,3 +168,66 @@ clickNewProjectButton.addEventListener('click', () => {
         
     })
 })
+
+// DOM - create form for new todo item
+clickNewToDoButton.addEventListener('click', () => {
+
+    // DOM - temporarily make New Project and New To Do buttons unclickable
+    clickNewProjectButton.setAttribute('disabled', 'disabled');
+    clickNewToDoButton.setAttribute('disabled', 'disabled');
+    
+    // DOM - create fieldset, input box, Submit button, and Cancel button
+    const fieldset = document.createElement('fieldset');
+    fieldset.setAttribute('id', 'fieldset');
+    selectToDosContainer.appendChild(fieldset);
+    const selectFieldsetContainer = document.querySelector('#fieldset');
+    /*
+    const inputBox = document.createElement('input');
+    inputBox.setAttribute('id', 'title');
+    selectFieldsetContainer.appendChild(inputBox);
+    
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    submitButton.setAttribute('id', 'submit');
+    selectFieldsetContainer.appendChild(submitButton);
+    const clickSubmitButton = document.querySelector('#submit');
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'Cancel';
+    cancelButton.setAttribute('id', 'cancel');
+    selectFieldsetContainer.appendChild(cancelButton);
+    const clickCancelButton = document.querySelector('#cancel');
+
+    // DOM - functionality of Cancel button
+    clickCancelButton.addEventListener('click', () => {
+        
+        // DOM - removes fieldset
+        selectProjectsContainer.removeChild(selectFieldsetContainer);
+
+        // DOM - makes New Project and New To Do buttons clickable again
+        clickNewProjectButton.removeAttribute('disabled');
+        clickNewToDoButton.removeAttribute('disabled');
+    })
+
+    // Functionality of Submit button
+    clickSubmitButton.addEventListener('click', () => {
+
+        // Create a new project
+        addProjectToProjectsStorageArray(inputBox.value);
+
+        // DOM - display title of new project on page
+        const displayProject = document.createElement('div');
+        displayProject.textContent = inputBox.value;
+        displayProject.setAttribute('class', 'project');
+        selectProjectsContainer.appendChild(displayProject);
+
+        // DOM - remove fieldset
+        selectProjectsContainer.removeChild(selectFieldsetContainer);
+
+        // DOM - makes New Project and New To Do buttons clickable again
+        clickNewProjectButton.removeAttribute('disabled');
+        clickNewToDoButton.removeAttribute('disabled');       
+        
+    })
+    */
+})
