@@ -115,6 +115,16 @@ const addToDosToDomFunction = (parentContainer) => {
     }
 }
 
+// DOM - what happens when a Project title is clicked
+const clickProject = () => {
+    const allProjects = document.querySelectorAll('.project');
+    allProjects.forEach((project) => {
+        project.addEventListener('click', () => {
+            console.log('works');
+        })
+    })
+}
+
 // DOM - create fieldset to input new project
 clickNewProjectButton.addEventListener('click', () => {
 
@@ -179,7 +189,12 @@ clickNewProjectButton.addEventListener('click', () => {
 
         // DOM - display all todo items from current project on page
         addToDosToDomFunction(selectToDosContainer);
+
+        // DOM - clicking any project name 
+        clickProject();
     })
+
+
 })
 
 // DOM - create fieldset to input new todo item
@@ -269,3 +284,4 @@ clickNewToDoButton.addEventListener('click', () => {
         clickNewToDoButton.removeAttribute('disabled');       
     })
 })
+
