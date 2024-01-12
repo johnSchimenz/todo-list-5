@@ -104,10 +104,11 @@ const removeChildrenFromDomFunction = (parentContainer, childClassString) => {
     })
 }
 
-// DOM - function that adds todo items from current project on page
+// DOM - function that adds todo items from current project to page
 const addToDosToDomFunction = (parentContainer) => {
     for (let i = 0; i < currentProject['toDos'].length; i++) {
         const toDoContainer = document.createElement('div');
+        toDoContainer.setAttribute('id', 'displayed-todo' + i);
         toDoContainer.setAttribute('class', 'displayed-todo');
         const toDo = currentProject['toDos'][i];
         toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
@@ -116,7 +117,28 @@ const addToDosToDomFunction = (parentContainer) => {
         // DOM - add Delete button to remove specific todo
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
+        deleteButton.setAttribute('id', 'delete' + i);
+        deleteButton.setAttribute('class', 'delete');
         toDoContainer.appendChild(deleteButton);
+
+        // DOM - clicking the delete button will delete its todo
+        const selectSpecificToDoContainer = document.querySelector('#displayed-todo' + i);
+        const clickDeleteButton = document.querySelector('#delete' + i);
+        clickDeleteButton.addEventListener('click', () => {
+
+            // Delete todo item and update projectsStorageArray
+            console.log(projectsStorageArray);
+            console.log(currentProject);
+            console.log(currentProject.toDos[0]['title']);
+            removeToDoFromProject(currentProject.toDos[0]['title']);
+            console.log(projectsStorageArray);
+
+            // DOM - removes the todo
+            parentContainer.removeChild(selectSpecificToDoContainer); 
+                   
+        })
+
+
     }
 }
 
