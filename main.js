@@ -86,6 +86,7 @@ const ToDoFactory = (title, dueDate, details) => {
     };
 }
 
+/*
 // Trial stuff to make sure Javascript functionality works
 const a = addProjectToProjectsStorageArray('Project1');
 const b = addProjectToProjectsStorageArray('Project2');
@@ -95,6 +96,7 @@ addToDoToProject('Fire', 'b', 'c');
 addToDoToProject('Water', 'x', 'y');
 addToDoToProject('Air', 'm', 'n');
 removeToDoFromProject('Fire');
+*/
 
 // DOM - list of all initial document.querySelectors
 const selectTopContainer = document.querySelector('#top');
@@ -179,7 +181,6 @@ clickNewProjectButton.addEventListener('click', () => {
             toDoContainer.textContent = `Title: ${toDo.title}, Due Date: ${toDo.dueDate}, Details: ${toDo.details}`;
             selectToDosContainer.appendChild(toDoContainer);
         }
-        
     })
 })
 
